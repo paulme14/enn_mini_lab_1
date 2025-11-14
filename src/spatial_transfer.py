@@ -1,8 +1,18 @@
+"""
+Spatial Transfer
+
+Functions that shall apply the LinearRegression model
+on the different training and validation sets 
+(testing transfer between different cities).
+"""
+
 import numpy as np
-from sklearn.linear_model import LinearRegression
+from src.baseline_model import BaselineLinearModel
 from sklearn.metrics import r2_score, root_mean_squared_error
 
 def train_and_eval(X_train,y_train,X_val,y_val):
+    # Apply training to regression model
+    # and afterwards evaluate on R2 and RMSE for both data sets
     return {
         "r2_train": np.random.rand(),
         "rmse_train": np.random.rand(),

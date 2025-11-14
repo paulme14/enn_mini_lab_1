@@ -1,13 +1,15 @@
 """
-Test file for Task 1
+Test file for Task 4
 -----------------------------------------------------------
 This file validates:
-  1. Check cleaning result (structure + missing values)
-  2. Baseline model performance on 1D input (livingSpace -> totalRent)
-  3. Contribution of categorical feature(s)
+  1. Check cleaning result (structure + missing values) for Bielefeld
+  2. Simple transfer of Baseline model to different city 
+  3. Overfitting on small data set (for Bielefeld)
+  4. Implementation of Gradient Descent
+  5. Further training on small data for better transfer to novel city
 
 Run manually via:
-    python -m pytest -s tests/test_1_dataprocessing.py
+    python -m pytest -s tests/test_4_spatialtransfer.py
 (-v verbose delivers more details.)
 """
 
@@ -115,7 +117,7 @@ def test_cross_domain_generalization():
     print("✅ Bielefeld overfitting tests passed.")
 
 # ---------------------------------------------------------------------
-# 4.4 Test: Gradient Descent
+# 4.4-4.5 Test: Gradient Descent
 # ---------------------------------------------------------------------
 def test_gradient_descent_on_muenster():
     data = load_all_clean_data()

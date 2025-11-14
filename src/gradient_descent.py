@@ -1,8 +1,9 @@
 """
-Linear regression model for the regression exercises - using GD.
+Linear regression model using Gradient Descent (Task 4)
 
-This version provides
+This file provides
     - A class interface (GradientDescentLinearModel) for extension
+      and a basic structure for the implementation.
     - we also include a normalization of the data
         This is required as we have features of quite different magnitude
         which leads to instabilities. Normalization is provided.
@@ -33,6 +34,7 @@ class GradientDescentLinearModel:
         self.epochs = epochs
         self.w = None
         self.b = 0.0
+        # Lists for tracking of losses 
         self.train_curve = []
         self.val_curve = []
         self.mean_ = None
