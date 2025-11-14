@@ -43,3 +43,8 @@ build/
 !OnlineWebsite/References
 !OnlineWebsite/decker.yaml
 !OnlineWebsite/chicago-author-date.csl
+
+# Virtual environment
+.venv/
+env/
+venv/
