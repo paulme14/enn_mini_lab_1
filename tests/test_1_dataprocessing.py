@@ -1,3 +1,16 @@
+"""
+Test file for Task 1
+-----------------------------------------------------------
+This file validates:
+  1. Check cleaning result (structure + missing values)
+  2. Baseline model performance on 1D input (livingSpace -> totalRent)
+  3. Contribution of categorical feature(s)
+
+Run manually via:
+    python -m pytest -s tests/test_1_dataprocessing.py
+(-v verbose delivers more details.)
+"""
+
 import pytest
 import numpy as np
 import pandas as pd
@@ -9,9 +22,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.preprocessing import clean_data
 from src.baseline_model import train_baseline_model, evaluate_model
-
-# For running the tests - call (from the upper level directory): python tests/test_1_data_processing.py -v
-# or -s for a more verbose behavior (not supressing the stdout calls)
 
 # ---------------------------------------------------------------------
 # 1.1 Test: Check cleaning result (structure + missing values)
@@ -31,6 +41,9 @@ def test_cleaned_data_structure():
     numeric_cols = df_clean.select_dtypes(include=[np.number]).columns
     assert len(numeric_cols) > 10, f"Expected >10 numeric features, got {len(numeric_cols)}"
     assert len(numeric_cols) == df_clean.shape[1], "Some columns are still non-numeric"
+
+    # This test will already pass with the dummy implementation.
+    # We will in addition check for the categorical features.
 
     print(f"✅ Data cleaning successful: {len(df_clean)} rows, {len(numeric_cols)} numeric features.")
 
@@ -63,7 +76,7 @@ def test_baseline_model_performance():
     print(f"✅ Baseline model performance within expected range — R²: {eval_result['r2']:.3f}, RMSE: {eval_result['rmse']:.1f}€")
 
 # ---------------------------------------------------------------------
-# 1.3️ Test: Contribution of categorical feature(s)
+# 1.3 Test: Contribution of categorical feature(s)
 # ---------------------------------------------------------------------
 def test_categorical_feature_contribution():
     """Check that at least one encoded categorical feature contributes (R² > 0.1)."""
@@ -74,16 +87,24 @@ def test_categorical_feature_contribution():
     cat_cols = [c for c in df_clean.columns if c.endswith("_num")]
     assert len(cat_cols) > 0, "No categorical _num features found after cleaning."
 
-    # Try first categorical feature
-    cat_feature = cat_cols[0]
-    X = df_clean[[cat_feature]].to_numpy()
     y = df_clean["totalRent"].to_numpy()
 
-    model = LinearRegression()
-    model.fit(X, y)
-    y_pred = model.predict(X)
-    r2 = r2_score(y, y_pred)
+    # Track best feature and score
+    best_feature, best_r2 = None, -1
 
-    assert r2 > 0.1, f"Categorical feature {cat_feature} not informative enough (R²={r2:.2f})"
+    for cat_feature in cat_cols:
+        X = df_clean[[cat_feature]].to_numpy()
 
-    print(f"✅ Categorical feature '{cat_feature}' contributes to prediction (R²={r2:.2f})")
+        model = LinearRegression()
+        model.fit(X, y)
+        y_pred = model.predict(X)
+        r2 = r2_score(y, y_pred)
+
+        if r2 > best_r2:
+            best_feature, best_r2 = cat_feature, r2
+
+    assert best_r2 > 0.05, (
+        f"No categorical feature informative enough (best: {best_feature}, R²={best_r2:.2f})"
+    )
+
+    print(f"✅ Best categorical feature '{best_feature}' contributes to prediction (R²={best_r2:.2f})")

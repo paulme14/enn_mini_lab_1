@@ -46,6 +46,7 @@ class BaselineLinearModel:
 
 
 # ---------------------------------------------------------------------
+# Task 1 — Basic linear regression functions
 # Functions to run the models as used in the tests of exercise 1.
 # ---------------------------------------------------------------------
 def train_baseline_model(X_train, y_train):
@@ -68,3 +69,25 @@ def evaluate_model(model, X_val, y_val):
     r2 = r2_score(y_val, y_pred)
     rmse = root_mean_squared_error(y_val, y_pred)
     return {"r2": r2, "rmse": rmse}
+
+# ---------------------------------------------------------------------
+# Task 2 — Evaluate arbitrary feature combinations
+# ---------------------------------------------------------------------
+def evaluate_feature_set(df_train, df_val, feature_list, target="totalRent"):
+    """
+    Evaluate a linear regression model trained on a given feature list.
+    Used by the stepwise feature selection procedure in Task 2.
+    """
+
+    X_train = df_train_sub[feature_list].to_numpy()
+    y_train = df_train_sub[target].to_numpy()
+    X_val = df_val_sub[feature_list].to_numpy()
+    y_val = df_val_sub[target].to_numpy()
+
+    model = train_baseline_model(X_train, y_train)
+    y_pred = model.predict(X_val)
+
+    r2 = r2_score(y_val, y_pred)
+    rmse = root_mean_squared_error(y_val, y_pred)
+
+    return {"r2": float(r2), "rmse": float(rmse)}
