@@ -1,21 +1,21 @@
-livingSpace, baseRent, totalRent, distanceCenter, noRooms, floor, yearConstructed, lastRefurbish, balcony, garden, cellar, noParkSpaces, url
-75,1925,2425,18,3.0,1, 2023, NA, TRUE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/159446030
-28,560,690,29,1.0,3, 1956, NA, FALSE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/103301057
-130,2610,2940,22,4.0,4, 2024, NA, TRUE, FALSE, TRUE,1, https://www.immobilienscout24.de/expose/162047034
-47,1290,1490,38,2.0,0, NA, NA, TRUE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/162191670
-140,2200,2500,90,3.5,0, NA, 2025, TRUE, FALSE, FALSE,2, https://www.immobilienscout24.de/expose/162682629
-125,2425,2795,27,4.0,2, 1900, 2018, TRUE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/162457819
-102,1540,1800,18,3.0,0, NA, 2020, TRUE, TRUE, TRUE,1, https://www.immobilienscout24.de/expose/162839196
-88,1200,1600,51,3.0,0, 1976, NA, TRUE, TRUE, TRUE,1, https://www.immobilienscout24.de/expose/162483440
-58,698,935,62,3.0,1, 1998, NA, TRUE, FALSE, TRUE,1, https://www.immobilienscout24.de/expose/162768320
-57,795,985,68,2.0,1, 2010, NA, TRUE, FALSE, FALSE,1, https://www.immobilienscout24.de/expose/162422847
-56,840,965,17,2.0,2, NA, NA, TRUE, TRUE, TRUE,0, https://www.immobilienscout24.de/expose/162767237
-55,1400,1700,15,2.0,3, 2000, 2020, TRUE, FALSE, FALSE,0, https://www.immobilienscout24.de/expose/161848862
-40,620,900,13,1.5,1, NA, 2025, FALSE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/162481184
-42,750,900,27,1.0,2, 1979, 2023, TRUE, FALSE, TRUE,1, https://www.immobilienscout24.de/expose/147451189
-36,390,520,92,1.0,-1, NA, NA, TRUE, FALSE, FALSE,0, https://www.immobilienscout24.de/expose/162851803
-70,780,900,22,3.0,2, NA, NA, FALSE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/162841185
-60,780,900,10,2.0,3, 1958, NA, TRUE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/129350275
-65,1300,1500,22,2.0,0, NA, NA, TRUE, FALSE, FALSE,1, https://www.immobilienscout24.de/expose/162651853
-64,832,1052,29,2.5,1, NA, NA, FALSE, FALSE, TRUE,0, https://www.immobilienscout24.de/expose/162451712
-50,650,800,79,2.0,3, NA, NA, FALSE, TRUE, FALSE,1, https://www.immobilienscout24.de/expose/162701986
+livingSpace,baseRent,totalRent,distanceCenter,noRooms,floor,yearConstructed,lastRefurbish,balcony,garden,cellar,noParkSpaces,url
+75,1925,2425,18,3.0,1,2023,NA,TRUE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/159446030
+28,560,690,29,1.0,3,1956,NA,FALSE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/103301057
+130,2610,2940,22,4.0,4,2024,NA,TRUE,FALSE,TRUE,1,https://www.immobilienscout24.de/expose/162047034
+47,1290,1490,38,2.0,0,NA,NA,TRUE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/162191670
+140,2200,2500,90,3.5,0,NA,2025,TRUE,FALSE,FALSE,2,https://www.immobilienscout24.de/expose/162682629
+125,2425,2795,27,4.0,2,1900,2018,TRUE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/162457819
+102,1540,1800,18,3.0,0,NA,2020,TRUE,TRUE,TRUE,1,https://www.immobilienscout24.de/expose/162839196
+88,1200,1600,51,3.0,0,1976,NA,TRUE,TRUE,TRUE,1,https://www.immobilienscout24.de/expose/162483440
+58,698,935,62,3.0,1,1998,NA,TRUE,FALSE,TRUE,1,https://www.immobilienscout24.de/expose/162768320
+57,795,985,68,2.0,1,2010,NA,TRUE,FALSE,FALSE,1,https://www.immobilienscout24.de/expose/162422847
+56,840,965,17,2.0,2,NA,NA,TRUE,TRUE,TRUE,0,https://www.immobilienscout24.de/expose/162767237
+55,1400,1700,15,2.0,3,2000,2020,TRUE,FALSE,FALSE,0,https://www.immobilienscout24.de/expose/161848862
+40,620,900,13,1.5,1,NA,2025,FALSE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/162481184
+42,750,900,27,1.0,2,1979,2023,TRUE,FALSE,TRUE,1,https://www.immobilienscout24.de/expose/147451189
+36,390,520,92,1.0,-1,NA,NA,TRUE,FALSE,FALSE,0,https://www.immobilienscout24.de/expose/162851803
+70,780,900,22,3.0,2,NA,NA,FALSE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/162841185
+60,780,900,10,2.0,3,1958,NA,TRUE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/129350275
+65,1300,1500,22,2.0,0,NA,NA,TRUE,FALSE,FALSE,1,https://www.immobilienscout24.de/expose/162651853
+64,832,1052,29,2.5,1,NA,NA,FALSE,FALSE,TRUE,0,https://www.immobilienscout24.de/expose/162451712
+50,650,800,79,2.0,3,NA,NA,FALSE,TRUE,FALSE,1,https://www.immobilienscout24.de/expose/162701986

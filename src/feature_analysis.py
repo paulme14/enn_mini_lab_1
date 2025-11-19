@@ -54,19 +54,30 @@ def analyze_single_features(df: pd.DataFrame, target_col: str = "totalRent"):
 # ---------------------------------------------------------------------
 # Stepwise feature selection (Task 2.2)
 # ---------------------------------------------------------------------
+<<<<<<< HEAD
 def stepwise_selection(df: pd.DataFrame, features: list, target_col: str = "totalRent"):
+=======
+def stepwise_selection(df_train: pd.DataFrame, df_val: pd.DataFrame):
+>>>>>>> upstream/main
     """
     Simulate a stepwise feature selection process that gradually adds features
     and evaluates the model performance.
 
     Parameters
     ----------
+<<<<<<< HEAD
     df : pd.DataFrame
         Cleaned dataset.
     features : list
         List of features in the order they are added.
     target_col : str
         Target variable name.
+=======
+    df_train : pd.DataFrame
+        Cleaned training dataset.
+    df_val : pd.DataFrame
+        Cleaned validation dataset.
+>>>>>>> upstream/main
 
     Returns
     -------

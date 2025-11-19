@@ -27,12 +27,12 @@ from src.baseline_model import train_baseline_model, evaluate_model
 # 1.1 Test: Check cleaning result (structure + missing values)
 # ---------------------------------------------------------------------
 def test_cleaned_data_structure():
-    """Ensure cleaned dataset has >300 entries, no NaN, all numeric, >10 features."""
+    """Ensure cleaned dataset has >330 entries, no NaN, all numeric, >10 features."""
     df = pd.read_csv("data/train.csv")
     df_clean = clean_data(df)
 
     # Must have sufficient rows
-    assert len(df_clean) > 300, f"Expected >300 rows, got {len(df_clean)}"
+    assert len(df_clean) > 330, f"Expected >300 rows, got {len(df_clean)}"
 
     # Must not have missing values
     assert not df_clean.isnull().any().any(), "Cleaned DataFrame still contains NaN values"

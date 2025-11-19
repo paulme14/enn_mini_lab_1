@@ -6,6 +6,22 @@ structures in the correct format so that tests and example notebooks can
 run successfully.
 """
 
+<<<<<<< HEAD
+=======
+def get_candidate_features():
+    """
+    Return a fixed list of Top K features (obtained from earlier tasks)
+    """
+    return [
+        "livingSpace",
+        "yearConstructed",
+        "noParkSpaces",
+        "picturecount",
+        "noRooms",
+    ]
+
+
+>>>>>>> upstream/main
 def build_polynomial_design_matrix(X_full, n_features, degree):
     """
     Given the cleaned dataframe, a feature list, and a polynomial degree:
@@ -133,4 +149,8 @@ def get_best_polynomial_model(results_list):
         "r2_val": 0.7,
         "rmse_val": 160,
     }
+<<<<<<< HEAD
     return best_model
+=======
+    return best_model
+>>>>>>> upstream/main

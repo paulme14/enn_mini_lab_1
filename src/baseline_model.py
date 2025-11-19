@@ -69,6 +69,7 @@ def evaluate_model(model, X_val, y_val):
     r2 = r2_score(y_val, y_pred)
     rmse = root_mean_squared_error(y_val, y_pred)
     return {"r2": r2, "rmse": rmse}
+<<<<<<< HEAD
 
 # ---------------------------------------------------------------------
 # Task 2 — Evaluate arbitrary feature combinations
@@ -91,3 +92,5 @@ def evaluate_feature_set(df_train, df_val, feature_list, target="totalRent"):
     rmse = root_mean_squared_error(y_val, y_pred)
 
     return {"r2": float(r2), "rmse": float(rmse)}
+=======
+>>>>>>> upstream/main

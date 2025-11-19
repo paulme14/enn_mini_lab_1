@@ -17,7 +17,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.feature_analysis import analyze_single_features, stepwise_selection
 from src.preprocessing import clean_data
+<<<<<<< HEAD
 from src.baseline_model import evaluate_feature_set
+=======
+>>>>>>> upstream/main
 from src.visualization import plot_feature_performance
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error
@@ -96,6 +99,11 @@ def test_stepwise_model_performance():
     # Find the 5-feature combination
     assert result[4] is not None, "No feature set with 5 features found"
     selected_features = result[4]["features"]
+<<<<<<< HEAD
+=======
+    assert "totalRent" not in selected_features, "not allowed as a feature"
+    assert "baseRent" not in selected_features, "not allowed as a feature"
+>>>>>>> upstream/main
 
     # Prepare data
     X_train = df_train[selected_features]
