@@ -13,38 +13,16 @@ import numpy as np
 # ---------------------------------------------------------------------
 # Encode categorical features (required to fully implement for Task 1.3)
 # ---------------------------------------------------------------------
-def encode_categorical(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Encode categorical (object/bool) columns to numeric.
-    The transformation should be simple and deterministic.
-
-    Example:
-    - 'condition' → string length
-    - boolean features → {False: 0, True: 1}
-    """
-    df_encoded = df.copy()
-
-    # Example categorical feature: 'condition' → encode via string length
-    if "condition" in df_encoded.columns:
-        df_encoded["condition_num"] = df_encoded["condition"].astype(str).str.len()
-
-    # Boolean → 0/1
-    bool_cols = df_encoded.select_dtypes(include=["bool"]).columns
-    for col in bool_cols:
-        df_encoded[col + "_num"] = df_encoded[col].astype(int)
-
-    # Optional: encode heatingType or interiorQual if present
-    for cat_col in ["heatingType", "interiorQual"]:
-        if cat_col in df_encoded.columns:
-            df_encoded[cat_col + "_num"] = df_encoded[cat_col].astype(str).str.len()
-
-    return df_encoded
+def col_encoder(df: pd.DataFrame, col: str) -> tuple[pd.DataFrame, dict]:
+    df[col], mapping = pd.factorize(df[col])
+    df = df.rename(columns={col: f'{col}_num'})
+    return df, dict(enumerate(mapping))
 
 
 # ---------------------------------------------------------------------
 # Clean full dataset (required to fully implement for Task 1.1)
 # ---------------------------------------------------------------------
-def clean_data(df: pd.DataFrame) -> pd.DataFrame:
+def clean_data(df: pd.DataFrame, get_cat_feature_mapping: bool = False) -> pd.DataFrame:
     """
     Perform complete cleaning pipeline:
     - Remove invalid rows (e.g., livingSpace <= 10)
@@ -55,23 +33,56 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
     df_clean = df.copy()
 
+    # Fill missing values
+    # Fill totalRent with baseRent + serviceCharge + heatingCosts
+    df_clean['totalRent'] = df_clean['totalRent'].fillna(df_clean['baseRent'] + df_clean['serviceCharge'].fillna(0) + df_clean['heatingCosts'].fillna(0))
+
+    # Fill missing categorical values with 'missing'
+    categorical_cols = df_clean.select_dtypes(include=['object', 'category']).columns
+    df_clean[categorical_cols] = df_clean[categorical_cols].fillna('missing')
+
+    # Fill missing numerical values with median
+    numerical_cols = df_clean.select_dtypes(include=[np.number]).columns
+    df_clean[numerical_cols] = df_clean[numerical_cols].fillna(df_clean[numerical_cols].median())
+
     # Filter invalid rows
+
+    # Living space
     if "livingSpace" in df_clean.columns:
-        df_clean = df_clean[df_clean["livingSpace"] > 10]
+        df_clean = df_clean[(df_clean["livingSpace"] > 10) & (df_clean["livingSpace"] < 500)]
 
-    # Fill numeric columns (median)
-    for col in df_clean.select_dtypes(include=[np.number]).columns:
-        df_clean[col] = df_clean[col].fillna(df_clean[col].median())
+    # noParkSpaces
+    if "noParkSpaces" in df_clean.columns:
+        df_clean = df_clean[df_clean["noParkSpaces"] < 10]
 
-    # Fill non-numeric columns (mode)
-    for col in df_clean.select_dtypes(exclude=[np.number]).columns:
-        try:
-            df_clean[col] = df_clean[col].fillna(df_clean[col].mode()[0])
-        except Exception:
-            df_clean[col] = df_clean[col].fillna("unknown")
+    # geo_plz
+    if "geo_plz" in df_clean.columns:
+        df_clean = df_clean[(df_clean["geo_plz"] < 48400)]
+
+    # floor
+    if "floor" in df_clean.columns:
+        df_clean = df_clean[df_clean["floor"] < 10]
+
+    # numberOfFloors
+    if "numberOfFloors" in df_clean.columns:
+        df_clean = df_clean[(df_clean["numberOfFloors"] > 0 ) & (df_clean["numberOfFloors"] < 10)]
+
+    # lastRefurbish
+    if "lastRefurbish" in df_clean.columns:
+        df_clean = df_clean[df_clean["lastRefurbish"] >= 2000]
+
+    # americanArea
+    if "americanArea" in df_clean.columns:
+        df_clean = df_clean[df_clean["americanArea"] < 20000]
+    
 
     # Encode categorical columns
-    df_clean = encode_categorical(df_clean)
+    df_cols_nono_num = df.select_dtypes(exclude='number').columns.to_list()
+    dict_of_mappings = {}
+    for col in df_cols_nono_num:
+        df_clean, mapping = col_encoder(df_clean, col)
+        dict_of_mappings[col] = mapping
+
 
     # Keep only numeric columns
     df_clean = df_clean.select_dtypes(include=[np.number])
