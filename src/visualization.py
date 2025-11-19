@@ -156,4 +156,31 @@ def plot_polynomial_results(results_list, output_dir="results", file_name="Task_
 
         created_paths.append(path)
 
+<<<<<<< HEAD
     return created_paths
+=======
+    return created_paths
+
+# ---------------------------------------------------------------------
+# Plot: Learning curves (RMSE) over training and fine-tuning (Task 5.3)
+# ---------------------------------------------------------------------
+def plot_learning_curve(model, output_dir="results", file_name="learning_curve", ref_rmse=None):
+    """
+    Plot RMSE learning curves from model.train_curve and model.val_curve.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+
+    fig, ax = plt.subplots(figsize=(6, 4))
+
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel("RMSE")
+    ax.set_title("Learning Curve")
+    ax.grid(True, linestyle=":")
+
+    path = os.path.join(output_dir, f"{file_name}.pdf")
+    plt.tight_layout()
+    plt.savefig(path)
+    plt.close(fig)
+
+    return path
+>>>>>>> upstream/main

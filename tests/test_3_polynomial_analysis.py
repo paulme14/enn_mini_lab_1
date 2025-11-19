@@ -20,7 +20,11 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, root_mean_squared_error
 
 from src.preprocessing import clean_data
+<<<<<<< HEAD
 from src.polynomial_analysis import evaluate_polynomial_models, analyze_polynomial_performance, get_best_polynomial_model, build_polynomial_design_matrix
+=======
+from src.polynomial_analysis import evaluate_polynomial_models, analyze_polynomial_performance, get_best_polynomial_model, build_polynomial_design_matrix, get_candidate_features
+>>>>>>> upstream/main
 from src.visualization import plot_polynomial_results, plot_heatmap_performance
 
 # ---------------------------------------------------------------------
@@ -132,7 +136,11 @@ def test_visualization_output_heatmap():
     print(f"✅ Visualization file (Heatmap) created successfully:\n - {heatmap_pdf}")
 
 # ---------------------------------------------------------------------
+<<<<<<< HEAD
 # 3.3 Test — Visualization output creation: five 2D (one each feature combination)
+=======
+# 3.3 Test — Visualization output creation: three 2D (one each feature combination)
+>>>>>>> upstream/main
 # ---------------------------------------------------------------------
 def test_visualization_output_2D():
     """Ensure both polynomial curve and heatmap plots are generated and saved as PDFs."""
