@@ -156,9 +156,6 @@ def plot_polynomial_results(results_list, output_dir="results", file_name="Task_
 
         created_paths.append(path)
 
-<<<<<<< HEAD
-    return created_paths
-=======
     return created_paths
 
 # ---------------------------------------------------------------------
@@ -183,4 +180,3 @@ def plot_learning_curve(model, output_dir="results", file_name="learning_curve",
     plt.close(fig)
 
     return path
->>>>>>> upstream/main

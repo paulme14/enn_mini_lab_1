@@ -33,6 +33,9 @@ def clean_data(df: pd.DataFrame, get_cat_feature_mapping: bool = False) -> pd.Da
 
     df_clean = df.copy()
 
+    
+
+
     # Fill missing values
     # Fill totalRent with baseRent + serviceCharge + heatingCosts
     df_clean['totalRent'] = df_clean['totalRent'].fillna(df_clean['baseRent'] + df_clean['serviceCharge'].fillna(0) + df_clean['heatingCosts'].fillna(0))
@@ -44,6 +47,9 @@ def clean_data(df: pd.DataFrame, get_cat_feature_mapping: bool = False) -> pd.Da
     # Fill missing numerical values with median
     numerical_cols = df_clean.select_dtypes(include=[np.number]).columns
     df_clean[numerical_cols] = df_clean[numerical_cols].fillna(df_clean[numerical_cols].median())
+
+    # Dropping columns with only one unique value:
+    df_clean = df_clean.loc[:, df_clean.nunique() > 1]
 
     # Filter invalid rows
 
@@ -77,7 +83,7 @@ def clean_data(df: pd.DataFrame, get_cat_feature_mapping: bool = False) -> pd.Da
     
 
     # Encode categorical columns
-    df_cols_nono_num = df.select_dtypes(exclude='number').columns.to_list()
+    df_cols_nono_num = df_clean.select_dtypes(exclude='number').columns.to_list()
     dict_of_mappings = {}
     for col in df_cols_nono_num:
         df_clean, mapping = col_encoder(df_clean, col)
@@ -90,7 +96,11 @@ def clean_data(df: pd.DataFrame, get_cat_feature_mapping: bool = False) -> pd.Da
     # Final safety check
     df_clean = df_clean.dropna(axis=0, how="any")
 
-    return df_clean
+    if get_cat_feature_mapping:
+        return df_clean, mapping
+    
+    else: 
+        return df_clean
 
 # ---------------------------------------------------------------------
 # Inspect missing values

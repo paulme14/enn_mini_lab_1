@@ -39,45 +39,34 @@ def analyze_single_features(df: pd.DataFrame, target_col: str = "totalRent"):
         ]
         Sorted in descending order by R².
     """
-    # --- Dummy data for testing ---
-    features = [
-        "livingSpace", "numberOfRooms", "yearConstructed",
-        "baseRent", "floor", "heatingType_num",
-        "condition_num", "balcony", "cellar", "lift"
-    ]
-    np.random.seed(42)
-    r2_values = np.linspace(0.9, 0.1, len(features))  # strictly descending
+    # Implementation
+    features = df.columns.to_list()
+    features.remove(target_col)
+    output = []
+    for feature in features:
+        X = df[feature]
+        Y = df.loc[X.index, target_col]
+        r_value = X.corr(Y)
+        output.append({'feature': feature, "r2": abs(r_value)})
 
-    return [{"feature": f, "r2": float(r)} for f, r in zip(features, r2_values)]
-
+    # order descending and return
+    return sorted(output, key=lambda x: x['r2'], reverse=True)
+    
 
 # ---------------------------------------------------------------------
 # Stepwise feature selection (Task 2.2)
 # ---------------------------------------------------------------------
-<<<<<<< HEAD
-def stepwise_selection(df: pd.DataFrame, features: list, target_col: str = "totalRent"):
-=======
 def stepwise_selection(df_train: pd.DataFrame, df_val: pd.DataFrame):
->>>>>>> upstream/main
     """
     Simulate a stepwise feature selection process that gradually adds features
     and evaluates the model performance.
 
     Parameters
     ----------
-<<<<<<< HEAD
-    df : pd.DataFrame
-        Cleaned dataset.
-    features : list
-        List of features in the order they are added.
-    target_col : str
-        Target variable name.
-=======
     df_train : pd.DataFrame
         Cleaned training dataset.
     df_val : pd.DataFrame
         Cleaned validation dataset.
->>>>>>> upstream/main
 
     Returns
     -------
